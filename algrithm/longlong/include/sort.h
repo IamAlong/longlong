@@ -1,12 +1,8 @@
-#include <functional>
+#include "handler.h"
 
 namespace ll {
 
 namespace algrithm {
-
-using cmp = std::function<bool(int, int)>;
-template<typename Type>
-using cmp2 = std::function<bool(Type, Type)>;
 
 class SortInterface {
  public:
