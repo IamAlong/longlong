@@ -1,3 +1,6 @@
+#ifndef _HANDLER_H_
+#define _HANDLER_H_
+
 #include <functional>
 
 namespace ll {
@@ -14,3 +17,5 @@ using each = std::function<void(Type&)>;
 } // namespace algrithm
 
 } // namespace ll
+
+#endif

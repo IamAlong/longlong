@@ -1,3 +1,6 @@
+#ifndef _UTIL_HPP_
+#define _UTIL_HPP_
+
 #include <cstring>
 #include "handler.h"
 
@@ -6,14 +9,14 @@ namespace ll {
 namespace algrithm {
 
 template<typename Type>
-int find(Type* _datas, int _datas_cnt, Type data) {
-  int left = 0, right = _datas_cnt;
+int find(Type* data, int data_cnt, Type it) {
+  int left = 0, right = data_cnt;
   
   while (left >= 0 && left <= right) {
     int mid = left + (right - left) / 2;
-    if (data == _datas[mid]) {
+    if (it == data[mid]) {
       return mid;
-    } else if (_datas[mid] < data) {
+    } else if (data[mid] < it) {
       left = mid + 1;
     } else {
       right = mid - 1;
@@ -24,41 +27,43 @@ int find(Type* _datas, int _datas_cnt, Type data) {
 }
 
 template<typename Type>
-void merge(Type* _datas_f, int _datas_f_len, Type* _datas_s, int _datas_s_len, Type* _res, cmp2<Type> c) {
-  int datas_f_cp[_datas_f_len];
-  std::memcpy(datas_f_cp, _datas_f, _datas_f_len * sizeof(Type));
-  int datas_s_cp[_datas_s_len];
-  std::memcpy(datas_s_cp, _datas_s, _datas_s_len * sizeof(Type));
+void merge(Type* data_f, int data_f_len, Type* data_s, int data_s_len, Type* res, cmp2<Type> c) {
+  int datas_f_cp[data_f_len];
+  std::memcpy(datas_f_cp, data_f, data_f_len * sizeof(Type));
+  int datas_s_cp[data_s_len];
+  std::memcpy(datas_s_cp, data_s, data_s_len * sizeof(Type));
   int k = 0, i = 0, j = 0;
-  for (; i < _datas_f_len && j < _datas_s_len;) {
+  for (; i < data_f_len && j < data_s_len;) {
     if (c(datas_f_cp[i], datas_s_cp[j])) {
-      _res[k++] = datas_f_cp[i++];
+      res[k++] = datas_f_cp[i++];
     } else {
-      _res[k++] = datas_s_cp[j++];
+      res[k++] = datas_s_cp[j++];
     }
   }
-  for (; i < _datas_f_len;) {
-    _res[k++] = datas_f_cp[i++];
+  for (; i < data_f_len;) {
+    res[k++] = datas_f_cp[i++];
   }
-  for (; j < _datas_s_len;) {
-    _res[k++] = datas_s_cp[j++];
-  }
-}
-
-template<typename Type>
-void for_each(Type* _start, Type* _end, each<Type&> _h) {
-  for (; _start != _end; ++_start) {
-    _h(*_start);
+  for (; j < data_s_len;) {
+    res[k++] = datas_s_cp[j++];
   }
 }
 
 template<typename Type>
-void swap(Type& _lh, Type& _rh) {
-  Type tmp = _lh;
-  _lh = _rh;
-  _rh = tmp;
+void for_each(Type* start, Type* end, each<Type&> h) {
+  for (; start != end; ++start) {
+    h(*start);
+  }
+}
+
+template<typename Type>
+void swap(Type& lh, Type& rh) {
+  Type tmp = lh;
+  lh = rh;
+  rh = tmp;
 }
 
 } // algrithm
 
 }// ll
+
+#endif

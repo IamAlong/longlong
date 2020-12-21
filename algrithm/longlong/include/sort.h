@@ -1,3 +1,6 @@
+#ifndef _SORT_H_
+#define _SORT_H_
+
 #include "handler.h"
 
 namespace ll {
@@ -32,3 +35,5 @@ class BubbleSort : public SortInterface {
 } // namespace sort
 
 } // namespace ll
+
+#endif
