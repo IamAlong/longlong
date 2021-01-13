@@ -1,7 +1,7 @@
 #include <iostream>
 #include "util.hpp"
 
-using namespace ll::algrithm;
+using namespace ll::algorithm;
 
 int main() {
   each<int> e = [](int& data){std::cout << data << " ";};
