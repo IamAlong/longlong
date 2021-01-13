@@ -4,7 +4,7 @@
 #include "sort.h"
 #include "util.hpp"
 
-using namespace ll::algrithm;
+using namespace ll::algorithm;
 
 void InsertionSort::sort(int* start, int* end, cmp c) {
   int* cur = start + 1;
@@ -54,4 +54,16 @@ void BubbleSort::sort(int* start, int* end, cmp c) {
       break;
     }
   }
-} 
+}
+
+void HeapSort::sort(int* start, int* end, cmp c) {
+  build_heap(start, end, end - start, c);
+  for (int i = heap_size; i > 1; --i) {
+    swap(datas[i], datas[1]);
+    --heap_size;
+    protect_heap(1);
+  }
+  for (int i = 1; end != start; ++i) {
+    *(--end) = datas[i];
+  }
+}

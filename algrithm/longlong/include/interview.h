@@ -6,7 +6,7 @@
 
 namespace ll {
 
-namespace algrithm {
+namespace algorithm {
 
 class MaximumSubarray {
  public:
@@ -44,7 +44,7 @@ class MaximumSubarray {
   std::vector<int> nums;
 };
 
-} // namespace algrithm
+} // namespace algorithm
 
 } // namespace ll
 

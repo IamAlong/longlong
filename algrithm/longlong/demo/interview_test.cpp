@@ -2,7 +2,7 @@
 #include <iostream>
 #include "interview.h"
 
-using namespace ll::algrithm;
+using namespace ll::algorithm;
 
 void test_get_maximum() {
   int a[16] = { 1, 2, 3, -4, -1, -3, -5, 6, -10, 1, 12, -3, -5, 10, 7, 8 };

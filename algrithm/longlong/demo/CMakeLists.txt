@@ -5,3 +5,6 @@ add_executable(${PROJECT_NAME}_util_test util_test.cpp)
 
 add_executable(${PROJECT_NAME}_interview_test interview_test.cpp)
 target_link_libraries(${PROJECT_NAME}_interview_test ${PROJECT_NAME})
+
+add_executable(${PROJECT_NAME}_heap_test heap_test.cpp)
+target_link_libraries(${PROJECT_NAME}_heap_test ${PROJECT_NAME})

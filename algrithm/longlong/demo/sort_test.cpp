@@ -2,7 +2,7 @@
 #include <ctime>
 #include "sort.h"
 #include "util.hpp"
-using namespace ll::algrithm;
+using namespace ll::algorithm;
 
 int main() {
   SortInterface* ss = new InsertionSort();
@@ -56,6 +56,20 @@ int main() {
   }
   delete ss;
   std::cout << std::endl << "Test bubble sort finish" << std::endl;
+
+  ss = new HeapSort();
+  int e[6] = {1, 2, 1, 3, 4, 2};
+  std::cout << "Testint heap sort" << std::endl;
+  start = std::clock();
+  ss->sort(e, e + 6);
+  end = std::clock();
+  std::cout << "heap sort cost " << end - start << "Ms" << std::endl;
+  for (auto i : e) {
+    std::cout << i << " ";
+  }
+  delete ss;
+  std::cout << std::endl << "Test heap sort finish" << std::endl;
+
 
   return 0;
 }

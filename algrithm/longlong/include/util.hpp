@@ -6,7 +6,7 @@
 
 namespace ll {
 
-namespace algrithm {
+namespace algorithm {
 
 template<typename Type>
 int find(Type* data, int data_cnt, Type it) {
@@ -62,7 +62,7 @@ void swap(Type& lh, Type& rh) {
   rh = tmp;
 }
 
-} // algrithm
+} // algorithm
 
 }// ll
 

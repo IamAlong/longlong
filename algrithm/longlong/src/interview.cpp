@@ -3,7 +3,7 @@
 
 #include "interview.h"
 
-using namespace ll::algrithm;
+using namespace ll::algorithm;
 
 MaximumSubarray::MaximumSubarray(std::vector<int>& nums) {
   for (auto n : nums) {

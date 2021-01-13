@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 2.7)
 
-project(algrithm)
+project(algorithm)
 
 set(CMAKE_CXX_STANDARD 11)
 
