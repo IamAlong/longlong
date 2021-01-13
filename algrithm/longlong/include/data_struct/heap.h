@@ -1,5 +1,5 @@
-#ifndef _HEAP_HPP_
-#define _HEAP_HPP_
+#ifndef _HEAP_H_
+#define _HEAP_H_
 
 #include <vector>
 #include <utility>
