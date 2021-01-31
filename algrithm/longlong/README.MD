@@ -26,3 +26,22 @@ TODO：优化合并排序耗时
 上浮：当前节点同父节点比较，可想象成泡沫在水中上浮
 学习到了模板泛化编程，声明与实现分离的写法
 这里实现的堆排序算法在数据拷贝上耗时过大，主要原因是兼容了堆数据结构的通用性，如果单独做堆排序可减少大量耗时
+
+## 第7章 快速排序
+
+代码中实现使用Hoare partition，另外还有比较常见的Lomuto partition，比较容易理解，下面为其实现代码，但是在存在众数数量大是耗时较高，一般不作为库代码实现
+```
+size_t QuickSort::partition(int* start, int* end, cmp c) {
+  int x = *(end - 1);
+  int* i = start;
+  int* j = start;
+  for (; j < end - 2; ++j) {
+    if (c(*j, x)) {
+      swap(*i, *j);
+      i++;
+    }
+  }
+  swap(*i, *(end - 1));
+  return i - start;
+}
+```

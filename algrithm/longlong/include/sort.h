@@ -34,8 +34,15 @@ class BubbleSort : public SortInterface {
 };
 
 class HeapSort : public SortInterface, public Heap<int> {
-  public:
-   void sort(int *start, int* end, cmp c = std::less<int>()) override;
+ public:
+  void sort(int* start, int* end, cmp c = std::less<int>()) override;
+};
+
+class QuickSort : public SortInterface {
+ public:
+  void sort(int* start, int* end, cmp c = std::less<int>()) override;
+ private:
+  size_t partition(int* start, int* end, cmp c);
 };
 
 } // namespace sort

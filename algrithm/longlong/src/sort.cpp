@@ -67,3 +67,26 @@ void HeapSort::sort(int* start, int* end, cmp c) {
     *(--end) = datas[i];
   }
 }
+
+void QuickSort::sort(int* start, int* end, cmp c) {
+  if (end > start) {
+    size_t pos = partition(start, end, c);
+    sort(start, start + pos, c);
+    sort(start + pos + 1, end, c);
+  }
+}
+
+size_t QuickSort::partition(int* start, int* end, cmp c) {
+  int x = *start;
+  int* left = start;
+  int* right = end;
+  while (left < right) {
+    while (c(*(++left), x) && left < end);
+    while (c(x, *(--right)) && right > start);
+    if (left < right) {
+      swap(*left, *right);
+    }
+  }
+  swap(*right, *start);
+  return right - start;
+}

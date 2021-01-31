@@ -70,6 +70,18 @@ int main() {
   delete ss;
   std::cout << std::endl << "Test heap sort finish" << std::endl;
 
+  ss = new QuickSort();
+  int f[6] = {1, 2, 1, 3, 4, 2};
+  std::cout << "Testing quick sort" << std::endl;
+  start = std::clock();
+  ss->sort(f, f + 6);
+  end = std::clock();
+  std::cout << "quick sort cost " << end - start << "Ms" << std::endl;
+  for (auto i : f) {
+    std::cout << i << " ";
+  }
+  delete ss;
+  std::cout << std::endl << "Test quick sort finish" << std::endl;
 
   return 0;
 }
