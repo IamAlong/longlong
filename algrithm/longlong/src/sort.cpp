@@ -2,7 +2,6 @@
  *
  */
 #include "sort.h"
-#include "util.hpp"
 
 using namespace ll::algorithm;
 
