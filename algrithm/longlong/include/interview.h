@@ -3,11 +3,15 @@
 
 #include <vector>
 #include <string>
+#include "handler.h"
 
 namespace ll {
 
 namespace algorithm {
 
+/**
+ * 最大字数组和
+ */
 class MaximumSubarray {
  public:
   struct Maximum { 
@@ -32,7 +36,7 @@ class MaximumSubarray {
     int sum;
   };
  public:
-  MaximumSubarray(std::vector<int>& nums);
+  MaximumSubarray(const std::vector<int>& nums);
 
   // 分治
   Maximum get_maximum(int l, int r);
@@ -42,6 +46,27 @@ class MaximumSubarray {
  private:
   Maximum get_mid_sum(int l, int mid, int r);
   std::vector<int> nums;
+};
+
+/**
+ * 查第K大值
+ */
+class FindKthNum {
+ public:
+  int find_kth_num(std::vector<int>::iterator start, std::vector<int>::iterator end, size_t k);
+ private:
+  size_t partition(std::vector<int>::iterator start, std::vector<int>::iterator end, cmp c);
+};
+
+/**
+ * 找出最大最小值
+ */
+class GetMinAndMax {
+  public:
+   GetMinAndMax(const std::vector<int>& nums);
+   void get_min_max(int& min, int& max);
+  private:
+   std::vector<int> nums;
 };
 
 } // namespace algorithm

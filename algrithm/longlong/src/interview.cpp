@@ -1,14 +1,13 @@
 #include <sstream>
 #include <climits>
-
+#include <iostream>
 #include "interview.h"
+#include "util.hpp"
 
 using namespace ll::algorithm;
 
-MaximumSubarray::MaximumSubarray(std::vector<int>& nums) {
-  for (auto n : nums) {
-      this->nums.push_back(n);
-  }
+MaximumSubarray::MaximumSubarray(const std::vector<int>& nums)
+    : nums { nums } {
 }
   
 std::string MaximumSubarray::Maximum::to_string() {
@@ -90,4 +89,83 @@ MaximumSubarray::Maximum MaximumSubarray::get_maximum_v2() {
   }
 
   return res;
+}
+
+size_t FindKthNum::partition(std::vector<int>::iterator start, std::vector<int>::iterator end, cmp c)  {
+  int x = *start;
+  auto left = start;
+  auto right = end;
+  while (left < right) {
+    while (c(*(++left), x) && left < end);
+    while (c(x, *(--right)) && right > start);
+    if (left < right) {
+      swap(*left, *right);
+    }
+  }
+  swap(*right, *start);
+  return right - start;
+}
+
+int FindKthNum::find_kth_num(std::vector<int>::iterator start, std::vector<int>::iterator end, size_t k) {
+  if (end - start == 1) {
+    return *start;
+  }
+  if (end > start) {
+    size_t tmp = partition(start, end, std::less<int>());
+    auto left = start, right = end;
+    if (end - start - k == tmp) {
+      return *(start + tmp);
+    } else if (end - start - k > tmp) {
+      return find_kth_num(start + tmp + 1, end, k);
+    } else {
+      return find_kth_num(start, start + tmp, k - (end - start - tmp));
+    }
+  }
+  
+  return -1;
+}
+
+GetMinAndMax::GetMinAndMax(const std::vector<int>& nums)
+    : nums { nums }{
+}
+
+void GetMinAndMax::get_min_max(int& min, int& max) {
+  if (nums.empty()) {
+    return;
+  }
+  int min_tmp, max_tmp;
+  size_t start = 0;
+  if (nums.size() % 2 == 1) {
+    min_tmp = nums[0];
+    max_tmp = nums[0];
+    start = 1;
+  } else {
+    if (nums[0] > nums[1]) {
+      max_tmp = nums[0];
+      min_tmp = nums[1];
+    } else {
+      max_tmp = nums[1];
+      min_tmp = nums[0];
+    }
+    start = 2;
+  }
+  for (; start < nums.size(); start += 2) {
+    if (nums[start] > nums[start + 1]) {
+      if (nums[start] > max_tmp) {
+        max_tmp = nums[start];
+      }
+      if (nums[start + 1] < min_tmp) {
+        min_tmp = nums[start + 1];
+      }
+    } else {
+      if (nums[start] < min_tmp) {
+        min_tmp = nums[start];
+      }
+      if (nums[start + 1] > max_tmp) {
+        max_tmp = nums[start + 1];
+      }
+    }
+  }
+  min = min_tmp;
+  max = max_tmp;
 }
