@@ -1,31 +1,14 @@
 #ifndef _STACK_H_
 #define _STACK_H_
 
-#include <exception>
-#include <string>
 #include <vector>
+#include "data_exception.h"
 
 namespace ll {
 
 namespace algorithm {
 
-using std::exception;
-using std::string;
 using std::vector;
-
-class StackException : public exception {
-  public:
-    StackException(const string& msg)
-        : messag { msg } {
-    }
-
-    const char* what() noexcept {
-        return messag.c_str();
-    }
-
-  private:
-    string messag;
-};
 
 template<typename Type>
 class Stack {
@@ -37,8 +20,8 @@ class Stack {
     virtual ~Stack() {}
     bool empty() const;
     size_t capacity() const;
-    void push(const Type& d) throw (StackException);
-    Type pop() throw (StackException);
+    void push(const Type& d) throw (DataException);
+    Type pop() throw (DataException);
   private:
     size_t top;
     size_t cap;
@@ -49,6 +32,6 @@ class Stack {
 
 }
 
-#include "Stack.inl"
+#include "stack.inl"
 
 #endif

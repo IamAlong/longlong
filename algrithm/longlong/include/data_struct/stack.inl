@@ -32,17 +32,17 @@ namespace algorithm {
   }
 
   template<typename Type>
-  void Stack<Type>::push(const Type& d) throw (StackException) {
+  void Stack<Type>::push(const Type& d) throw (DataException) {
     if (cap == top) {
-      throw StackException("stack is full");
+      throw DataException("stack is full");
     }
     datas[top++] = d;
   }
 
   template<typename Type>
-  Type Stack<Type>::pop() throw (StackException) {
+  Type Stack<Type>::pop() throw (DataException) {
     if (empty()) {
-      throw StackException("stack is empty");
+      throw DataException("stack is empty");
     }
     return datas[--top];
   }

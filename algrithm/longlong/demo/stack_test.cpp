@@ -1,5 +1,6 @@
 #include <iostream>
-#include "data_struct/Stack.h"
+#include "data_struct/stack.h"
+#include "data_exception.h"
 
 using namespace ll::algorithm;
 using std::cout;
@@ -9,14 +10,14 @@ int main() {
   Stack<int> s1{ 0 };
   try {
     s1.push(1);
-  } catch (StackException e) {
+  } catch (DataException e) {
     cout << e.what() << endl;
   }
 
   Stack<int> s2;
   try {
     s2.pop();
-  } catch (StackException e) {
+  } catch (DataException e) {
     cout << e.what() << endl;
   }
   s2.push(0);
