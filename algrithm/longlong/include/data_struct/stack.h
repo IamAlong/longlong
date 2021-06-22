@@ -12,20 +12,20 @@ using std::vector;
 
 template<typename Type>
 class Stack {
-  public:
-    Stack();
-    Stack(size_t c);
-    Stack(Stack& rh) = delete;
-    Stack& operator=(const Stack& rh) = delete;
-    virtual ~Stack() {}
-    bool empty() const;
-    size_t capacity() const;
-    void push(const Type& d) throw (DataException);
-    Type pop() throw (DataException);
-  private:
-    size_t top;
-    size_t cap;
-    vector<Type> datas;
+ public:
+  Stack();
+  Stack(size_t c);
+  Stack(Stack& rh) = delete;
+  Stack& operator=(const Stack& rh) = delete;
+  virtual ~Stack() {}
+  bool empty() const;
+  size_t capacity() const;
+  void push(const Type& d) throw (DataException);
+  Type pop() throw (DataException);
+ private:
+  size_t top;
+  size_t cap;
+  vector<Type> datas;
 };
 
 }

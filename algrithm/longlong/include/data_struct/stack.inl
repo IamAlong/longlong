@@ -1,12 +1,10 @@
 #ifndef _STACK_INL_
 #define _STACK_INL_
 
-#include <limits>
-
 namespace ll {
 
 namespace algorithm {
-  static const size_t default_capacity = 1 << 6;
+  static const size_t default_capacity = 1024;
   template<typename Type>
   Stack<Type>::Stack()
     : top { 0 },

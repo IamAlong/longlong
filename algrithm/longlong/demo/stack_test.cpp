@@ -1,10 +1,8 @@
-#include <iostream>
+#include "head.h"
 #include "data_struct/stack.h"
 #include "data_exception.h"
 
 using namespace ll::algorithm;
-using std::cout;
-using std::endl;
 
 int main() {
   Stack<int> s1{ 0 };

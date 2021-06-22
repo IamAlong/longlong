@@ -11,3 +11,6 @@ target_link_libraries(${PROJECT_NAME}_heap_test ${PROJECT_NAME})
 
 add_executable(${PROJECT_NAME}_stack_test stack_test.cpp)
 target_link_libraries(${PROJECT_NAME}_stack_test ${PROJECT_NAME})
+
+add_executable(${PROJECT_NAME}_queue_test queue_test.cpp)
+target_link_libraries(${PROJECT_NAME}_queue_test ${PROJECT_NAME})
