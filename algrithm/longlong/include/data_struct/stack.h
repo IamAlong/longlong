@@ -22,8 +22,9 @@ class Stack {
   size_t capacity() const;
   void push(const Type& d) throw (DataException);
   Type pop() throw (DataException);
+  Type top();
  private:
-  size_t top;
+  size_t head;
   size_t cap;
   vector<Type> datas;
 };

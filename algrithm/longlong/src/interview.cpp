@@ -169,3 +169,74 @@ void GetMinAndMax::get_min_max(int& min, int& max) {
   min = min_tmp;
   max = max_tmp;
 }
+
+QueueUseStack::QueueUseStack()
+  : stack_a(),
+    stack_b() { 
+}
+
+int QueueUseStack::front() {
+  if (!stack_b.empty()) {
+    return stack_b.top();
+  }
+  while (!stack_a.empty()) {
+    stack_b.push(stack_a.pop()); // stack_a 会控制不会写超
+  }
+  return stack_b.top();
+}
+
+void QueueUseStack::enqueue(int data) {
+  try {
+    stack_a.push(data);
+  } catch (...) {}
+}
+
+void QueueUseStack::dequeue() {
+  if (!stack_b.empty()) {
+    stack_b.pop();
+    return;
+  }
+  while (!stack_a.empty()) {
+    stack_b.push(stack_a.pop());
+  }
+  try {
+    stack_b.pop();
+  } catch (...) {}
+}
+
+StackUseQueue::StackUseQueue()
+  : queue_a(),
+    queue_b() {
+}
+
+int StackUseQueue::top() {
+  while (queue_a.size() - 1 > 0) {
+    queue_b.enqueue(queue_a.dequeue());
+  }
+  int res = queue_a.front();
+  queue_b.enqueue(queue_a.dequeue());
+  // 由于Queue没有实现拷贝构造，只能把数据重新进队列,否则可以swap
+  while (!queue_b.empty()) {
+    queue_a.enqueue(queue_b.dequeue());
+  }
+  return res;
+}
+
+void StackUseQueue::push(int data) {
+  try {
+    queue_a.enqueue(data);
+  } catch (...) {}
+}
+
+void StackUseQueue::pop() {
+  while (queue_a.size() - 1 > 0) {
+    queue_b.enqueue(queue_a.dequeue());
+  }
+  try {
+    queue_a.dequeue();
+  } catch (...) {}
+  // 由于Queue没有实现拷贝构造，只能把数据重新进队列,否则可以swap
+  while (!queue_b.empty()) {
+    queue_a.enqueue(queue_b.dequeue());
+  }
+}

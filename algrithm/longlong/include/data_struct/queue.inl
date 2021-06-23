@@ -1,10 +1,11 @@
 #ifndef _QUEUE_INL_H_
 #define _QUEUE_INL_H_
 
+#include "base.h"
+
 namespace ll {
 
 namespace algorithm {
-  static const size_t default_capacity = 1024;
 
   template<typename Type>
   Queue<Type>::Queue()
@@ -58,6 +59,11 @@ namespace algorithm {
     tail = (tail + 1) % cap;
     --queue_size;
     return data;
+  }
+
+  template<typename Type>
+  Type Queue<Type>::front() {
+    return datas[tail]; 
   }
 
   template<typename Type>
@@ -144,7 +150,7 @@ namespace algorithm {
     }
   }
 
- template<typename Type>
+  template<typename Type>
   void Deque<Type>::pop_back() {
     if (!empty()) {
       --head;

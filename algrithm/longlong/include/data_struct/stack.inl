@@ -1,27 +1,28 @@
 #ifndef _STACK_INL_
 #define _STACK_INL_
 
+#include "base.h"
+
 namespace ll {
 
 namespace algorithm {
-  static const size_t default_capacity = 1024;
   template<typename Type>
   Stack<Type>::Stack()
-    : top { 0 },
+    : head { 0 },
       cap { default_capacity } {
     datas.resize(cap);
   }
 
   template<typename Type>
   Stack<Type>::Stack(size_t c)
-    : top { 0 },
-       cap { c } {
+    : head { 0 },
+      cap { c } {
     datas.resize(cap);
   }
 
   template<typename Type>
   bool Stack<Type>::empty() const {
-    return top == 0;
+    return head == 0;
   }
 
   template<typename Type>
@@ -31,10 +32,10 @@ namespace algorithm {
 
   template<typename Type>
   void Stack<Type>::push(const Type& d) throw (DataException) {
-    if (cap == top) {
+    if (cap == head) {
       throw DataException("stack is full");
     }
-    datas[top++] = d;
+    datas[head++] = d;
   }
 
   template<typename Type>
@@ -42,7 +43,12 @@ namespace algorithm {
     if (empty()) {
       throw DataException("stack is empty");
     }
-    return datas[--top];
+    return datas[--head];
+  }
+
+  template<typename Type>
+  Type Stack<Type>::top() {
+    return datas[head - 1];
   }
 
 }

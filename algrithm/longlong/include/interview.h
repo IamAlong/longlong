@@ -4,6 +4,8 @@
 #include <vector>
 #include <string>
 #include "handler.h"
+#include "data_struct/stack.h"
+#include "data_struct/queue.h"
 
 namespace ll {
 
@@ -68,6 +70,35 @@ class GetMinAndMax {
   private:
    std::vector<int> nums;
 };
+
+/**
+ * 使用两个栈实现一个队列
+ */
+class QueueUseStack {
+ public:
+  QueueUseStack();
+  int front();
+  void enqueue(int data);
+  void dequeue();
+ private:
+  Stack<int> stack_a; // 入
+  Stack<int> stack_b; // 出
+};
+
+/**
+ * 使用两个队列实现一个栈
+ */ 
+class StackUseQueue {
+ public:
+  StackUseQueue();
+  int top();
+  void push(int data);
+  void pop();
+ private:
+  Queue<int> queue_a;
+  Queue<int> queue_b;
+};
+
 
 } // namespace algorithm
 

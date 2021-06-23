@@ -1,6 +1,6 @@
 #include <vector>
-#include <iostream>
 #include "interview.h"
+#include "head.h"
 
 using namespace ll::algorithm;
 
@@ -31,9 +31,31 @@ void test_find_kth_num() {
   std::cout << "test_find_kth_num: res=" << res << std::endl;
 }
 
+void test_queue_use_stack() {
+  QueueUseStack q;
+  for (int i = 0; i < 10; ++i) {
+    q.enqueue(i);
+  }
+  cout << "first: " << q.front();
+  q.dequeue();
+  cout << "second: " << q.front() << endl;
+}
+
+void test_stack_use_queue() {
+  StackUseQueue s;
+  for (int i = 0; i < 10; ++i) {
+    s.push(i);
+  }
+  cout << "first: " << s.top();
+  s.pop();
+  cout << "second: " << s.top() << endl;
+}
+
 int main() {
   test_get_maximum();
   test_get_min_max();
   test_find_kth_num();
+  test_queue_use_stack();
+  test_stack_use_queue();
   return 0;
 }

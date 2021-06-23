@@ -25,6 +25,7 @@ class Queue {
 
   void enqueue(const Type& data) throw (DataException);
   Type dequeue() throw (DataException);
+  Type front();
  private:
   size_t queue_size;
   size_t cap;
