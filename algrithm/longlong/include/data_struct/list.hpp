@@ -48,17 +48,17 @@ class DoublyNode {
 template<typename Type>
 class List {
  public:
-  List() : head { new(std::nothrow) Node<Type> } {}
+  List() : head { new Node<Type> } {}
   List(const List<Type>& rh) {
     if (rh.head) {
-      this->head = new(std::nothrow) Node<Type>;
+      this->head = new Node<Type>;
       Node<Type>* rh_node = rh.head;
       this->head->data = rh_node->data;
       this->head->next = rh_node->next;
       rh_node = rh_node->next;
       Node<Type>* tmp = this->head;
       while (rh_node) {
-        tmp->next = new(std::nothrow) Node<Type>;
+        tmp->next = new Node<Type>;
         tmp = tmp->next;
         if (!tmp) {
           break;
@@ -73,12 +73,12 @@ class List {
   // copy and swap 优雅的赋值
   List<Type>& operator=(const List<Type>& rh) {
     List<Type> tmp(rh);
-    Swap(tmp);
+    my_swap(tmp);
     return *this;
   }
 
   List<Type>& operator=(List<Type>&& rh) {
-    Swap(rh);
+    my_swap(rh);
     return *this;
   }
 
@@ -101,7 +101,7 @@ class List {
     if (!n) {
       return;
     }
-    Node<Type>* node = new(std::nothrow) Node<Type>(d);
+    Node<Type>* node = new Node<Type>(d);
     node->next = n->next;
     n->next = node;
   }
@@ -151,7 +151,7 @@ class List {
 #endif
 
  private:
-  void Swap(List<Type>& other) noexcept {
+  inline void my_swap(List<Type>& other) noexcept {
     std::swap(this->head, other.head);
   }
   Node<Type>* head;
@@ -160,7 +160,7 @@ class List {
 template<typename Type>
 class DoublyList {
  public:
-  DoublyList() : head { new(std::nothrow) DoublyNode<Type> } {
+  DoublyList() : head { new DoublyNode<Type> } {
     head->next = head;
     head->pre = head;
   }
@@ -171,10 +171,46 @@ class DoublyList {
     head = nullptr;
   }
 
-  DoublyList(const DoublyList<Type>& rh) = delete;
+  DoublyList(const DoublyList<Type>& rh) : head { new DoublyNode<Type> } {
+    this->head->next = head;
+    this->head->pre = head;
+    auto rh_node = rh.head->next;
+    auto lh_node = this->head;
+    while (rh_node != rh.head) {
+      auto node = new(std::nothrow) DoublyNode<Type>();
+      if (!node) {
+        break;
+      }
+      node->data = rh_node->data;
+      node->pre = lh_node;
+      node->next = lh_node->next;
+      lh_node->next = node;
+      lh_node->next->pre = node;
+      lh_node = node;
+      rh_node = rh_node->next;
+    }
+  }
+
   DoublyList(DoublyList<Type>&& rh) = delete;
-  DoublyList& operator=(const DoublyList<Type>& rh) = delete;
+
+  DoublyList& operator=(const DoublyList<Type>& rh) {
+    DoublyList<Type> tmp(rh);
+    my_swap(tmp);
+    return *this;
+  }
+
   DoublyList& operator=(DoublyList<Type>&& rh) = delete;
+
+  DoublyNode<Type>* begin() const {
+    if (head) {
+      return head->next;
+    }
+    return nullptr;
+  }
+
+  DoublyNode<Type>* end() const {
+    return head;
+  }
 
   // 摧毁除head外其余节点
   void clear() {
@@ -199,7 +235,7 @@ class DoublyList {
     n->next = tmp;
   }
 
-  void push_back(const Type& d) {
+  void push_front(const Type& d) {
     insert(d, this->head);
   }
 
@@ -246,6 +282,9 @@ class DoublyList {
 
  private:
   DoublyNode<Type>* head; // 哨兵
+  inline void my_swap(DoublyList<Type>& other) noexcept {
+    std::swap(this->head, other.head);
+  }
 };
 
 }

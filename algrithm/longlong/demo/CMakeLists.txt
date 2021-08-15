@@ -16,4 +16,7 @@ add_executable(${PROJECT_NAME}_queue_test queue_test.cpp)
 target_link_libraries(${PROJECT_NAME}_queue_test ${PROJECT_NAME})
 
 add_executable(${PROJECT_NAME}_list_test list_test.cpp)
-target_link_libraries(${PROJECT_NAME_list_test} ${PROJECT_NAME}) 
+target_link_libraries(${PROJECT_NAME}_list_test ${PROJECT_NAME})
+
+add_executable(${PROJECT_NAME}_hash_test hash_test.cpp)
+target_link_libraries(${PROJECT_NAME}_hash_test ${PROJECT_NAME})

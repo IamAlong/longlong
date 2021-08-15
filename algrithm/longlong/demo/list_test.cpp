@@ -41,7 +41,7 @@ int main() {
 
   DoublyList<int> dl1;
   for (int i = 0; i < 5; i++) {
-    dl1.push_back(i);
+    dl1.push_front(i);
   }
   v = dl1.print();
   cout << "dl1 first print ";
@@ -63,6 +63,14 @@ int main() {
   dl1.erase(n->pre);
   v = dl1.print();
   cout << "dl1 third print ";
+  for (auto d : v) {
+    cout << d << " ";
+  }
+  cout << endl;
+
+  DoublyList<int> dl2(dl1);
+  v = dl2.print();
+  cout << "dl2 first print ";
   for (auto d : v) {
     cout << d << " ";
   }
