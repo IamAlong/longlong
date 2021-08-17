@@ -20,3 +20,5 @@ target_link_libraries(${PROJECT_NAME}_list_test ${PROJECT_NAME})
 
 add_executable(${PROJECT_NAME}_hash_test hash_test.cpp)
 target_link_libraries(${PROJECT_NAME}_hash_test ${PROJECT_NAME})
+
+add_executable(${PROJECT_NAME}_tree_test tree_test.cpp)
