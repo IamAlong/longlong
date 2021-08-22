@@ -3,7 +3,6 @@
 
 #include <iostream>
 #include <vector>
-#include <queue>
 
 const size_t default_capacity = 1024;
 
@@ -16,6 +15,5 @@ class Ivec : public std::vector<int> {
     std::cout << std::endl;
   }
 };
-class Ique : public std::queue<int> {};
 
 #endif
